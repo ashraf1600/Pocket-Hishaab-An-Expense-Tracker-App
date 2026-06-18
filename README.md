@@ -1,254 +1,386 @@
+# 💰 Pocket Hisaab – Expense Tracker App
 
+A modern full-stack expense tracking application built with **FastAPI**, **React**, and **Flutter (planned)**.
 
-```markdown
-# 💰 Pocket Hisaab – An Expense Tracker App
-
-**Pocket Hisaab** is a full‑stack expense tracking application built with **FastAPI** (backend), **React** (web frontend), and **Flutter** (mobile – planned).  
-It helps users manage daily expenses, monthly income, budgets, and accounts with a clean, professional dashboard.
-
-![Pocket Hisaab UI](./Demo_UI/Pocket_Hishaab_1.png)
+Pocket Hisaab helps users manage personal finances by tracking income, expenses, budgets, and accounts through a clean and intuitive dashboard.
 
 ---
 
-## 🚀 Live Demo (Coming Soon)
+## 📸 Screenshots
 
-- **Web App:** [https://pocket-hisaab.vercel.app](https://pocket-hisaab.vercel.app) *(once deployed)*
-- **API Docs:** [https://pocket-hisaab-api.onrender.com/docs](https://pocket-hisaab-api.onrender.com/docs) *(once deployed)*
+### Dashboard
+
+![Pocket Hisaab Dashboard](./Demo_UI/Pocket_Hishaab_1.png)
+
+> Add more screenshots inside the `Demo_UI` folder and update this section as the project grows.
 
 ---
 
-## ✨ Key Features
+## 🚀 Features
 
-### 🧾 Transactions
+### 🧾 Transaction Management
 
-- Add, view, and delete income/expense entries
-- Filter by date range and transaction type
-- Auto‑update account balance on every transaction
+* Add income and expense transactions
+* View complete transaction history
+* Delete transactions
+* Filter transactions by date and type
+* Automatic balance updates
 
-### 📊 Dashboard
+### 📊 Dashboard & Analytics
 
-- Real‑time summary of total income, expenses, and net balance
-- Spending breakdown by category (with progress bars)
-- Recent transaction history
+* Total income overview
+* Total expense overview
+* Current balance summary
+* Recent transactions
+* Category-wise expense breakdown
+* Visual charts and statistics
 
-### 🗂️ Categories & Accounts
+### 🗂️ Categories
 
-- Create custom income/expense categories with icons & colours
-- Manage multiple accounts (Cash, Bank, Credit Card)
-- Track account‑wise balances
+* Create custom categories
+* Income and expense categories
+* Category icons and colors
+* Easy category management
 
-### 💰 Budgets
+### 🏦 Accounts
 
-- Set monthly/yearly budgets per category
-- Visual progress tracking with percentage indicators
+* Multiple account support
+* Cash accounts
+* Bank accounts
+* Credit card accounts
+* Account-wise balance tracking
 
-### 🔐 Authentication
+### 💰 Budget Management
 
-- Secure JWT‑based login & registration
-- Password hashing with bcrypt
-- Protected routes (frontend & backend)
+* Monthly budgets
+* Yearly budgets
+* Budget utilization tracking
+* Progress indicators
+
+### 🔐 Authentication & Security
+
+* User registration
+* Secure login system
+* JWT authentication
+* Password hashing using bcrypt
+* Protected API routes
+* User-specific data isolation
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer        | Technology                                                                 |
-|--------------|----------------------------------------------------------------------------|
-| **Backend**  | FastAPI, SQLAlchemy, Pydantic, SQLite (dev) / PostgreSQL (prod), JWT, bcrypt |
-| **Web Frontend** | React, React Router, Bootstrap, React Icons, Recharts, Axios, React Hot Toast |
-| **Mobile**   | Flutter *(in progress)*                                                    |
-| **Deployment** | Render / Railway (backend), Vercel / Netlify (frontend)                   |
+| Layer          | Technology                                    |
+| -------------- | --------------------------------------------- |
+| Backend        | FastAPI, SQLAlchemy, Pydantic                 |
+| Database       | SQLite (Development), PostgreSQL (Production) |
+| Authentication | JWT, bcrypt                                   |
+| Frontend       | React, React Router                           |
+| UI Framework   | Bootstrap                                     |
+| Charts         | Recharts                                      |
+| HTTP Client    | Axios                                         |
+| Notifications  | React Hot Toast                               |
+| Mobile         | Flutter (Planned)                             |
+| Deployment     | Render, Railway, Vercel, Netlify              |
 
 ---
 
 ## 📂 Project Structure
 
-### Backend (FastAPI)
-
-```
-backend/
-├── app/
-│   ├── routers/
-│   │   ├── __init__.py
-│   │   ├── accounts.py
-│   │   ├── auth.py
-│   │   ├── budgets.py
-│   │   ├── categories.py
-│   │   ├── reports.py
-│   │   ├── transactions.py
-│   │   └── users.py
-│   ├── __init__.py
-│   ├── auth.py
-│   ├── database.py
-│   ├── dependencies.py
-│   ├── models.py
-│   └── schemas.py
-├── venv/
-├── .env
-├── expense.db
-└── requirements.txt
-```
-
-### Frontend (React)
-
-```
-frontend/
-├── node_modules/
-├── public/
-├── src/
-│   ├── api/
-│   ├── assets/
-│   ├── components/
-│   ├── context/
-│   ├── pages/
-│   ├── App.css
-│   ├── App.jsx
-│   ├── custom.css
-│   ├── index.css
-│   └── main.jsx
-├── .env
-├── .gitignore
-├── eslint.config.js
-├── index.html
-├── package-lock.json
-├── package.json
-├── README.md
-└── vite.config.js
+```text
+Pocket-Hisaab/
+│
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   ├── core/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   └── main.py
+│   │
+│   ├── requirements.txt
+│   └── .env
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── layouts/
+│   │   └── App.jsx
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+├── Demo_UI/
+│   └── Pocket_Hishaab_1.png
+│
+└── README.md
 ```
 
----
+## ⚙️ Backend Setup
 
-## 🖥️ Screenshots
-
-| Dashboard | Transactions | Categories |
-|:---------:|:------------:|:----------:|
-| ![Dashboard](./Demo_UI/Pocket_Hishaab_1.png) | ![Transactions](./Demo_UI/t.png) | ![Categories](./Demo_UI/c.png) |
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Python 3.10+ (backend)
-- Node.js 18+ (frontend)
-
-### 1. Clone the repository
+### 1. Clone Repository
 
 ```bash
-git clone https://github.com/ashraf1600/Pocket-Hishaab-An-Expense-Tracker-App.git
-cd Pocket-Hishaab-An-Expense-Tracker-App
+git clone https://github.com/yourusername/pocket-hisaab.git
+cd pocket-hisaab
 ```
 
-### 2. Backend Setup
+### 2. Create Virtual Environment
 
 ```bash
-cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+### 3. Activate Environment
+
+#### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+#### Linux / Mac
+
+```bash
+source venv/bin/activate
+```
+
+### 4. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
+
+### 5. Configure Environment Variables
+
+Create a `.env` file:
+
+```env
+DATABASE_URL=sqlite:///./pocket_hisaab.db
+
+SECRET_KEY=your_secret_key
+
+ALGORITHM=HS256
+
+ACCESS_TOKEN_EXPIRE_MINUTES=1440
+```
+
+### 6. Run Server
+
+```bash
 uvicorn app.main:app --reload
 ```
 
-The backend will run at `http://localhost:8000`.  
-API documentation: `http://localhost:8000/docs`
+Server will run at:
 
-### 3. Frontend Setup
-
-```bash
-cd ../frontend
-npm install
-npm run dev
+```text
+http://localhost:8000
 ```
 
-The web app will run at `http://localhost:5173`.
+API Docs:
+
+```text
+http://localhost:8000/docs
+```
 
 ---
 
-## 📡 API Endpoints Overview
+## 🎨 Frontend Setup
 
-| Method | Endpoint                 | Description                  |
-|--------|--------------------------|------------------------------|
-| POST   | `/auth/register`         | Register a new user          |
-| POST   | `/auth/login`            | Login & get JWT token        |
-| GET    | `/users/me`              | Get current user profile     |
-| CRUD   | `/categories/`           | Manage categories            |
-| CRUD   | `/accounts/`             | Manage accounts              |
-| CRUD   | `/transactions/`         | Manage transactions          |
-| CRUD   | `/budgets/`              | Manage budgets               |
-| GET    | `/reports/dashboard`     | Dashboard summary            |
-
-> Full API documentation is auto‑generated at `/docs` when the backend is running.
-
----
-
-## 🧪 Testing
-
-### Backend tests (planned)
-
-```bash
-cd backend
-pytest
-```
-
-### Frontend tests (planned)
+### Navigate to Frontend
 
 ```bash
 cd frontend
-npm test
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Start Development Server
+
+```bash
+npm run dev
+```
+
+Frontend will run at:
+
+```text
+http://localhost:5173
 ```
 
 ---
 
-## 🚧 Future Improvements
+## 🗄️ Database Schema
 
-- [ ] Mobile app with Flutter
-- [ ] Export transactions as CSV/PDF
-- [ ] Recurring transactions (daily/weekly/monthly)
-- [ ] Multi‑currency support
-- [ ] Dark mode
-- [ ] Email notifications for budget alerts
-- [ ] Docker containerisation
+### User
+
+* id
+* username
+* email
+* password_hash
+* created_at
+
+### Account
+
+* id
+* name
+* type
+* balance
+* user_id
+
+### Category
+
+* id
+* name
+* type
+* color
+* icon
+* user_id
+
+### Transaction
+
+* id
+* amount
+* type
+* description
+* transaction_date
+* account_id
+* category_id
+
+### Budget
+
+* id
+* category_id
+* limit_amount
+* period
+* start_date
+* end_date
+
+---
+
+## 🔑 API Endpoints
+
+### Authentication
+
+| Method | Endpoint       |
+| ------ | -------------- |
+| POST   | /auth/register |
+| POST   | /auth/login    |
+| GET    | /auth/me       |
+
+### Transactions
+
+| Method | Endpoint           |
+| ------ | ------------------ |
+| GET    | /transactions      |
+| POST   | /transactions      |
+| DELETE | /transactions/{id} |
+
+### Categories
+
+| Method | Endpoint         |
+| ------ | ---------------- |
+| GET    | /categories      |
+| POST   | /categories      |
+| PUT    | /categories/{id} |
+| DELETE | /categories/{id} |
+
+### Accounts
+
+| Method | Endpoint       |
+| ------ | -------------- |
+| GET    | /accounts      |
+| POST   | /accounts      |
+| PUT    | /accounts/{id} |
+| DELETE | /accounts/{id} |
+
+### Budgets
+
+| Method | Endpoint      |
+| ------ | ------------- |
+| GET    | /budgets      |
+| POST   | /budgets      |
+| PUT    | /budgets/{id} |
+| DELETE | /budgets/{id} |
+
+---
+
+## 🚀 Deployment
+
+### Backend
+
+* Render
+* Railway
+
+### Frontend
+
+* Vercel
+* Netlify
+
+---
+
+## 🔮 Future Enhancements
+
+* Flutter Mobile App
+* Dark Mode
+* Recurring Transactions
+* CSV Import & Export
+* Multi-Currency Support
+* Financial Reports
+* AI Expense Insights
+* Email Notifications
+* Expense Forecasting
 
 ---
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!  
-Feel free to check the [issues page](https://github.com/ashraf1600/Pocket-Hishaab-An-Expense-Tracker-App/issues) if you want to help.
+Contributions are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+
+```bash
+git checkout -b feature-name
+```
+
+3. Commit changes
+
+```bash
+git commit -m "Add new feature"
+```
+
+4. Push changes
+
+```bash
+git push origin feature-name
+```
+
+5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ---
 
-## 🙌 Acknowledgements
+## 👨‍💻 Author
 
-- Built with [FastAPI](https://fastapi.tiangolo.com/) – the modern Python web framework.
-- UI powered by [React](https://react.dev/) & [Bootstrap](https://getbootstrap.com/).
-- Icons from [React Icons](https://react-icons.github.io/react-icons/).
+**Ashraful Islam**
 
----
-
-## 📬 Contact
-
-**Ashraf** – [GitHub](https://github.com/ashraf1600)  
-Project Link: [https://github.com/ashraf1600/Pocket-Hishaab-An-Expense-Tracker-App](https://github.com/ashraf1600/Pocket-Hishaab-An-Expense-Tracker-App)
+* CSE Student, CUET
+* Full Stack Developer
+* Future Data & AI Engineer
 
 ---
 
-> ⭐ If you like this project, please give it a star on GitHub! ⭐
-```
-
----
-
-## ✅ After Pasting
-
-1. **Save** the file.
-2. **Commit** and **push** to GitHub.
-3. **Refresh** your repository page – the README will now render correctly!
-
-If it still looks raw, **check the file extension** – make sure it's `README.md` and not `README.md.txt` (Windows sometimes hides extensions).
+⭐ If you like this project, please consider giving it a star on GitHub.
