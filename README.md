@@ -1,8 +1,4 @@
-
-
----
-
-## 📁 Updated `README.md` – Full Content
+## ✅ Complete README.md – Copy and Paste
 
 ```markdown
 # 💰 Pocket Hisaab – An Expense Tracker App
@@ -122,9 +118,6 @@ frontend/
 |:---------:|:------------:|:----------:|
 | ![Dashboard](./Demo_UI/Pocket_Hishaab_1.png) | ![Transactions](./Demo_UI/t.png) | ![Categories](./Demo_UI/c.png) |
 
-> 💡 **More screenshots** will be added as the UI evolves.  
-> Currently you can view the **dashboard**, **transactions list**, and **category management** pages.
-
 ---
 
 ## 🚀 Getting Started
@@ -136,7 +129,7 @@ frontend/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/Pocket-Hishaab-An-Expense-Tracker-App.git
+git clone https://github.com/ashraf1600/Pocket-Hishaab-An-Expense-Tracker-App.git
 cd Pocket-Hishaab-An-Expense-Tracker-App
 ```
 
@@ -215,7 +208,7 @@ npm test
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!  
-Feel free to check the [issues page](https://github.com/yourusername/Pocket-Hishaab-An-Expense-Tracker-App/issues) if you want to help.
+Feel free to check the [issues page](https://github.com/ashraf1600/Pocket-Hishaab-An-Expense-Tracker-App/issues) if you want to help.
 
 ---
 
@@ -245,3 +238,10 @@ Project Link: [https://github.com/ashraf1600/Pocket-Hishaab-An-Expense-Tracker-A
 
 ---
 
+## 📌 What to Do
+
+1. **Copy** the entire block above.
+2. **Paste** it into your `README.md` file.
+3. **Save** and push to GitHub.
+
+Your README is now complete with folder structures, screenshots, and all project details! 🚀
