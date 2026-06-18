@@ -12,7 +12,11 @@ Pocket Hisaab helps users manage personal finances by tracking income, expenses,
 
 ![Pocket Hisaab Dashboard](./Demo_UI/Pocket_Hishaab_1.png)
 
-> Add more screenshots inside the `Demo_UI` folder and update this section as the project grows.
+### Transactions
+![Pocket Hisaab Transactions](./Demo_UI/t.png)
+
+### Category
+![Pocket Hisaab category](./Demo_UI/c.png)
 
 ---
 
