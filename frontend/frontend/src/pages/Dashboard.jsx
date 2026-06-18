@@ -155,7 +155,7 @@ const Dashboard = () => {
             <Card.Body className="d-flex justify-content-between align-items-center">
               <div>
                 <Card.Text className="opacity-75" style={{ fontSize: '0.9rem' }}>Total Income</Card.Text>
-                <h3 className="fw-bold mb-0">${summary?.total_income?.toFixed(2)}</h3>
+                <h3 className="fw-bold mb-0">৳{summary?.total_income?.toFixed(2)}</h3>
               </div>
               <FaArrowUp size={36} className="opacity-75" />
             </Card.Body>
@@ -166,7 +166,7 @@ const Dashboard = () => {
             <Card.Body className="d-flex justify-content-between align-items-center">
               <div>
                 <Card.Text className="opacity-75" style={{ fontSize: '0.9rem' }}>Total Expenses</Card.Text>
-                <h3 className="fw-bold mb-0">${summary?.total_expense?.toFixed(2)}</h3>
+                <h3 className="fw-bold mb-0">৳{summary?.total_expense?.toFixed(2)}</h3>
               </div>
               <FaArrowDown size={36} className="opacity-75" />
             </Card.Body>
@@ -177,7 +177,7 @@ const Dashboard = () => {
             <Card.Body className="d-flex justify-content-between align-items-center">
               <div>
                 <Card.Text className="opacity-75" style={{ fontSize: '0.9rem' }}>Net Balance</Card.Text>
-                <h3 className="fw-bold mb-0">${summary?.balance?.toFixed(2)}</h3>
+                <h3 className="fw-bold mb-0">৳{summary?.balance?.toFixed(2)}</h3>
               </div>
               <FaBalanceScale size={36} className="opacity-75" />
             </Card.Body>
@@ -216,7 +216,7 @@ const Dashboard = () => {
                             )}
                           </td>
                           <td className={`text-end fw-bold ${txn.type === 'income' ? 'text-success' : 'text-danger'}`}>
-                            {txn.type === 'income' ? '+' : '-'}${txn.amount.toFixed(2)}
+                            {txn.type === 'income' ? '+' : '-'}৳{txn.amount.toFixed(2)}
                           </td>
                         </tr>
                       ))}
@@ -240,7 +240,7 @@ const Dashboard = () => {
                   <div key={idx} className="mb-3">
                     <div className="d-flex justify-content-between align-items-center mb-1">
                       <span className="fw-semibold">{cat.category_name}</span>
-                      <span className="text-muted small">${cat.total.toFixed(2)} ({cat.percentage.toFixed(1)}%)</span>
+                      <span className="text-muted small">৳{cat.total.toFixed(2)} ({cat.percentage.toFixed(1)}%)</span>
                     </div>
                     <div className="progress" style={{ height: '8px' }}>
                       <div className="progress-bar" style={{ width: `${Math.min(cat.percentage, 100)}%`, background: `hsl(${Math.min(cat.percentage * 1.2, 120)}, 70%, 50%)` }}></div>
