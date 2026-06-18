@@ -1,0 +1,94 @@
+/* ===== গ্লোবাল রিসেট ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== স্ক্রলবার স্টাইল ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #e9ecef;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #adb5bd;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6c757d;
+}
+
+/* ===== কার্ড হোভার ইফেক্ট ===== */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== সাইডবারের জন্য কাস্টম স্ক্রল ===== */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+/* ===== টেবিলের জন্য কাস্টম ===== */
+.table-hover tbody tr {
+  transition: background 0.15s ease;
+}
+.table-hover tbody tr:hover {
+  background: rgba(13, 110, 253, 0.04);
+}
+
+/* ===== বাটন গ্রেডিয়েন্ট ===== */
+.btn-gradient {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-gradient:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+  color: white;
+}
+
+/* ===== ফ্লোটিং লেবেল ফিক্স ===== */
+.form-floating > .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.2);
+}
+
+/* ===== প্রগ্রেস বার কাস্টম ===== */
+.progress {
+  border-radius: 12px;
+  background-color: #e9ecef;
+  overflow: hidden;
+}
+
+/* ===== রেস্পন্সিভ টুইক ===== */
+@media (max-width: 768px) {
+  .sidebar-drawer {
+    width: 220px !important;
+    min-width: 220px !important;
+  }
+  .card-body {
+    padding: 1rem !important;
+  }
+}
