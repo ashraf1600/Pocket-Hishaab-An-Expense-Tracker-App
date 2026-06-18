@@ -1,4 +1,5 @@
----
+
+
 
 ```markdown
 # 💰 Pocket Hisaab – An Expense Tracker App
@@ -57,31 +58,57 @@ It helps users manage daily expenses, monthly income, budgets, and accounts with
 
 ## 📂 Project Structure
 
+### Backend (FastAPI)
+
 ```
-Pocket-Hishaab-An-Expense-Tracker-App/
-├── backend/
-│   ├── app/
-│   │   ├── api/           # Route handlers
-│   │   ├── core/          # Config, security, DB session
-│   │   ├── models/        # SQLAlchemy models
-│   │   ├── schemas/       # Pydantic schemas
-│   │   ├── services/      # Business logic
-│   │   └── main.py        # FastAPI entry point
-│   ├── tests/
-│   └── requirements.txt
-├── frontend/
-│   └── frontend/
-│       ├── src/
-│       │   ├── api/       # Axios config
-│       │   ├── components/# Reusable UI components
-│       │   ├── context/   # Auth context
-│       │   ├── pages/     # All views (Dashboard, Transactions, etc.)
-│       │   └── App.jsx
-│       ├── public/
-│       └── package.json
-├── Demo_UI/
-│   └── Pocket_Hishaab_1.png
-└── README.md
+backend/
+├── app/
+│   ├── routers/
+│   │   ├── __init__.py
+│   │   ├── accounts.py
+│   │   ├── auth.py
+│   │   ├── budgets.py
+│   │   ├── categories.py
+│   │   ├── reports.py
+│   │   ├── transactions.py
+│   │   └── users.py
+│   ├── __init__.py
+│   ├── auth.py
+│   ├── database.py
+│   ├── dependencies.py
+│   ├── models.py
+│   └── schemas.py
+├── venv/
+├── .env
+├── expense.db
+└── requirements.txt
+```
+
+### Frontend (React)
+
+```
+frontend/
+├── node_modules/
+├── public/
+├── src/
+│   ├── api/
+│   ├── assets/
+│   ├── components/
+│   ├── context/
+│   ├── pages/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── custom.css
+│   ├── index.css
+│   └── main.jsx
+├── .env
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+└── vite.config.js
 ```
 
 ---
@@ -90,9 +117,10 @@ Pocket-Hishaab-An-Expense-Tracker-App/
 
 | Dashboard | Transactions | Categories |
 |:---------:|:------------:|:----------:|
-| ![Dashboard](./Demo_UI/Pocket_Hishaab_1.png) | *Add screenshot* | *Add screenshot* |
+| ![Dashboard](./Demo_UI/Pocket_Hishaab_1.png) | ![Transactions](./Demo_UI/t.png) | ![Categories](./Demo_UI/c.png) |
 
-> 🔜 More screenshots will be added as the UI evolves.
+> 💡 **More screenshots** will be added as the UI evolves.  
+> Currently you can view the **dashboard**, **transactions list**, and **category management** pages.
 
 ---
 
@@ -125,7 +153,7 @@ API documentation: `http://localhost:8000/docs`
 ### 3. Frontend Setup
 
 ```bash
-cd ../frontend/frontend
+cd ../frontend
 npm install
 npm run dev
 ```
@@ -163,7 +191,7 @@ pytest
 ### Frontend tests (planned)
 
 ```bash
-cd frontend/frontend
+cd frontend
 npm test
 ```
 
@@ -211,3 +239,5 @@ Project Link: [https://github.com/ashraf1600/Pocket-Hishaab-An-Expense-Tracker-A
 
 > ⭐ If you like this project, please give it a star on GitHub! ⭐
 ```
+
+---
