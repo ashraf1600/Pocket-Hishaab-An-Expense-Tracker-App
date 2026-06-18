@@ -1,4 +1,4 @@
-## ✅ Complete README.md – Copy and Paste
+
 
 ```markdown
 # 💰 Pocket Hisaab – An Expense Tracker App
@@ -11,6 +11,7 @@ It helps users manage daily expenses, monthly income, budgets, and accounts with
 ---
 
 ## 🚀 Live Demo (Coming Soon)
+
 - **Web App:** [https://pocket-hisaab.vercel.app](https://pocket-hisaab.vercel.app) *(once deployed)*
 - **API Docs:** [https://pocket-hisaab-api.onrender.com/docs](https://pocket-hisaab-api.onrender.com/docs) *(once deployed)*
 
@@ -19,25 +20,30 @@ It helps users manage daily expenses, monthly income, budgets, and accounts with
 ## ✨ Key Features
 
 ### 🧾 Transactions
+
 - Add, view, and delete income/expense entries
 - Filter by date range and transaction type
 - Auto‑update account balance on every transaction
 
 ### 📊 Dashboard
+
 - Real‑time summary of total income, expenses, and net balance
 - Spending breakdown by category (with progress bars)
 - Recent transaction history
 
 ### 🗂️ Categories & Accounts
+
 - Create custom income/expense categories with icons & colours
 - Manage multiple accounts (Cash, Bank, Credit Card)
 - Track account‑wise balances
 
 ### 💰 Budgets
+
 - Set monthly/yearly budgets per category
 - Visual progress tracking with percentage indicators
 
 ### 🔐 Authentication
+
 - Secure JWT‑based login & registration
 - Password hashing with bcrypt
 - Protected routes (frontend & backend)
@@ -123,6 +129,7 @@ frontend/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Python 3.10+ (backend)
 - Node.js 18+ (frontend)
 
@@ -238,10 +245,10 @@ Project Link: [https://github.com/ashraf1600/Pocket-Hishaab-An-Expense-Tracker-A
 
 ---
 
-## 📌 What to Do
+## ✅ After Pasting
 
-1. **Copy** the entire block above.
-2. **Paste** it into your `README.md` file.
-3. **Save** and push to GitHub.
+1. **Save** the file.
+2. **Commit** and **push** to GitHub.
+3. **Refresh** your repository page – the README will now render correctly!
 
-Your README is now complete with folder structures, screenshots, and all project details! 🚀
+If it still looks raw, **check the file extension** – make sure it's `README.md` and not `README.md.txt` (Windows sometimes hides extensions).
