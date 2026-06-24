@@ -15,6 +15,7 @@ class AccountType(str, enum.Enum):
     CASH = "cash"
     BANK = "bank"
     CREDIT_CARD = "credit_card"
+    Mobile_Banking = "mobile_banking"
 
 
 class BudgetPeriod(str, enum.Enum):
@@ -30,7 +31,7 @@ class User(Base):
     name = Column(String, nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
-    currency = Column(String, default="USD")
+    currency = Column(String, default="BDT")
     created_at = Column(DateTime, default=datetime.utcnow)
 
     # Relationships
@@ -70,7 +71,7 @@ class Account(Base):
     name = Column(String(50), nullable=False)
     type = Column(Enum(AccountType), nullable=False)
     balance = Column(Float, default=0.0)
-    currency = Column(String(3), default="USD")
+    currency = Column(String(3), default="BDT")
 
     # Relationships
     user = relationship("User", back_populates="accounts")

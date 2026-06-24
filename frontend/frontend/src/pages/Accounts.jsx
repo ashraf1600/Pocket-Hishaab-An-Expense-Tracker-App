@@ -69,12 +69,21 @@ const Accounts = () => {
     setForm({ name: '', type: 'cash', balance: 0, currency: 'BDT' });
   };
 
-  // Calculate total balance
   const totalBalance = accounts.reduce((sum, acc) => sum + (acc.balance || 0), 0);
+
+  // Account type badge colors
+  const getBadgeColor = (type) => {
+    switch (type) {
+      case 'cash': return 'success';
+      case 'bank': return 'primary';
+      case 'credit_card': return 'warning';
+      case 'mobile_banking': return 'info';
+      default: return 'secondary';
+    }
+  };
 
   return (
     <Container fluid className="py-4">
-      {/* Header with total balance */}
       <div className="d-flex flex-wrap justify-content-between align-items-center mb-4">
         <div>
           <h1 className="fw-bold mb-0 d-flex align-items-center">
@@ -93,14 +102,11 @@ const Accounts = () => {
       </div>
 
       <Row>
-        {/* ---- ফর্ম (Create/Edit) ---- */}
         <Col lg={5} className="mb-4">
           <Card className="shadow-sm border-0 card-hover">
             <Card.Header
               className="text-white"
-              style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-              }}
+              style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
             >
               <h5 className="mb-0">
                 {editing ? <FaEdit className="me-2" /> : <FaPlus className="me-2" />}
@@ -129,6 +135,7 @@ const Accounts = () => {
                     <option value="cash">Cash</option>
                     <option value="bank">Bank</option>
                     <option value="credit_card">Credit Card</option>
+                    <option value="mobile_banking">Mobile Banking</option>
                   </Form.Select>
                 </Form.Group>
 
@@ -173,7 +180,6 @@ const Accounts = () => {
           </Card>
         </Col>
 
-        {/* ---- অ্যাকাউন্টের তালিকা ---- */}
         <Col lg={7}>
           <Card className="shadow-sm border-0 card-hover">
             <Card.Header className="bg-light d-flex justify-content-between align-items-center">
@@ -201,13 +207,7 @@ const Accounts = () => {
                       <div>
                         <h6 className="mb-0">
                           {acc.name}
-                          <Badge
-                            bg={
-                              acc.type === 'cash' ? 'success' :
-                              acc.type === 'bank' ? 'primary' : 'warning'
-                            }
-                            className="ms-2"
-                          >
+                          <Badge bg={getBadgeColor(acc.type)} className="ms-2">
                             {acc.type.replace('_', ' ')}
                           </Badge>
                         </h6>

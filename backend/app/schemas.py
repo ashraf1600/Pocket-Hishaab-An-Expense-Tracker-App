@@ -12,6 +12,7 @@ class AccountType(str, Enum):
     CASH = "cash"
     BANK = "bank"
     CREDIT_CARD = "credit_card"
+    MOBILE_BANKING = "mobile_banking"
 
 class BudgetPeriod(str, Enum):
     MONTHLY = "monthly"
