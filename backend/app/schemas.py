@@ -95,10 +95,10 @@ class TransactionOut(TransactionBase):
     created_at: datetime
     account: Optional[AccountOut] = None
     category: Optional[CategoryOut] = None
-    
+    transfer_id: Optional[int] = None
+    category_id: Optional[int] = None   # <--- ADD THIS LINE
 
-    class Config:
-        orm_mode = True
+    model_config = {"from_attributes": True}
 
 # --- Budget Schemas ---
 class BudgetBase(BaseModel):
@@ -133,3 +133,14 @@ class DashboardSummary(BaseModel):
     balance: float
     recent_transactions: List[TransactionOut]
     spending_by_category: List[SpendingByCategory]
+
+
+
+# app/schemas.py – add new schemas
+
+class TransferCreate(BaseModel):
+    source_account_id: int
+    destination_account_id: int
+    amount: float = Field(gt=0)
+    description: Optional[str] = None
+    date: date

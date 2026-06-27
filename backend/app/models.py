@@ -87,12 +87,14 @@ class Transaction(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     account_id = Column(Integer, ForeignKey("accounts.id"), nullable=False)
-    category_id = Column(Integer, ForeignKey("categories.id"), nullable=False)
+    category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)
     amount = Column(Float, nullable=False)
     type = Column(Enum(TransactionType), nullable=False)
     description = Column(String(255))
     date = Column(Date, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
+
+    transfer_id = Column(Integer, nullable=True, index=True)
 
     # Relationships
     user = relationship("User", back_populates="transactions")

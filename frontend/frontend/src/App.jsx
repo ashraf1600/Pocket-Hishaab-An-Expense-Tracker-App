@@ -11,6 +11,7 @@ import AddTransaction from './pages/AddTransaction';
 import Categories from './pages/Categories';
 import Accounts from './pages/Accounts';
 import Budgets from './pages/Budgets';
+import Transfer from './pages/Transfer';  // 🆕 Import Transfer component
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './custom.css';
 
@@ -20,9 +21,12 @@ function App() {
       <AuthProvider>
         <Toaster position="top-right" />
         <Routes>
+          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Navigate to="/dashboard" />} />
+
+          {/* Protected Routes (require authentication) */}
           <Route element={<PrivateRoute />}>
             <Route element={<Layout />}>
               <Route path="/dashboard" element={<Dashboard />} />
@@ -31,6 +35,7 @@ function App() {
               <Route path="/categories" element={<Categories />} />
               <Route path="/accounts" element={<Accounts />} />
               <Route path="/budgets" element={<Budgets />} />
+              <Route path="/transfer" element={<Transfer />} />  {/* ✅ Transfer route */}
             </Route>
           </Route>
         </Routes>

@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
 from .routers import auth, users, categories, accounts, transactions, budgets, reports
 
-# Create tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -12,16 +11,22 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS - allow React & Flutter to connect
+# ✅ CORS Middleware – MUST BE BEFORE ROUTES
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173", "*"],
+    allow_origins=[
+        "http://localhost:5173",   # Vite default
+        "http://localhost:3000",   # React default
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:3000",
+        "*"  # ⚠️ For development only – remove in production
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Include routers
+# Include routers AFTER CORS
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(categories.router)

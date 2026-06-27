@@ -1,13 +1,16 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
-from sqlalchemy import func, and_, or_
+from sqlalchemy import func
 from typing import List, Optional
 from datetime import date, datetime
+import time
+import random
 from .. import schemas, models, dependencies
+from ..schemas import TransactionOut, TransferCreate
 
 router = APIRouter(prefix="/transactions", tags=["transactions"])
 
-@router.post("/", response_model=schemas.TransactionOut)
+@router.post("/", response_model=TransactionOut)
 def create_transaction(
     transaction: schemas.TransactionCreate,
     db: Session = Depends(dependencies.get_db),
@@ -32,7 +35,7 @@ def create_transaction(
     # Create transaction
     new_transaction = models.Transaction(
         user_id=current_user.id,
-        **transaction.dict()
+        **transaction.model_dump()   # Pydantic v2
     )
     db.add(new_transaction)
 
@@ -46,7 +49,7 @@ def create_transaction(
     db.refresh(new_transaction)
     return new_transaction
 
-@router.get("/", response_model=List[schemas.TransactionOut])
+@router.get("/", response_model=List[TransactionOut])
 def get_transactions(
     start_date: Optional[date] = None,
     end_date: Optional[date] = None,
@@ -75,7 +78,7 @@ def get_transactions(
 
     return query.order_by(models.Transaction.date.desc()).offset(offset).limit(limit).all()
 
-@router.get("/{transaction_id}", response_model=schemas.TransactionOut)
+@router.get("/{transaction_id}", response_model=TransactionOut)
 def get_transaction(
     transaction_id: int,
     db: Session = Depends(dependencies.get_db),
@@ -89,7 +92,7 @@ def get_transaction(
         raise HTTPException(status_code=404, detail="Transaction not found")
     return transaction
 
-@router.put("/{transaction_id}", response_model=schemas.TransactionOut)
+@router.put("/{transaction_id}", response_model=TransactionOut)
 def update_transaction(
     transaction_id: int,
     transaction_update: schemas.TransactionCreate,
@@ -122,8 +125,8 @@ def update_transaction(
     else:
         old_account.balance += transaction.amount
 
-    # Update transaction fields
-    for key, value in transaction_update.dict().items():
+    # Update transaction fields (use model_dump for Pydantic v2)
+    for key, value in transaction_update.model_dump().items():
         setattr(transaction, key, value)
 
     # Apply new balance effect
@@ -161,3 +164,80 @@ def delete_transaction(
     db.delete(transaction)
     db.commit()
     return {"message": "Transaction deleted"}
+
+
+@router.post("/transfer", response_model=List[TransactionOut])
+def transfer_money(
+    transfer: TransferCreate,
+    db: Session = Depends(dependencies.get_db),
+    current_user: models.User = Depends(dependencies.get_current_user)
+):
+    # 1. Validate accounts belong to user
+    source = db.query(models.Account).filter(
+        models.Account.id == transfer.source_account_id,
+        models.Account.user_id == current_user.id
+    ).first()
+    if not source:
+        raise HTTPException(status_code=404, detail="Source account not found")
+
+    dest = db.query(models.Account).filter(
+        models.Account.id == transfer.destination_account_id,
+        models.Account.user_id == current_user.id
+    ).first()
+    if not dest:
+        raise HTTPException(status_code=404, detail="Destination account not found")
+
+    if source.id == dest.id:
+        raise HTTPException(status_code=400, detail="Source and destination accounts must be different")
+
+    if transfer.amount <= 0:
+        raise HTTPException(status_code=400, detail="Amount must be positive")
+
+    if source.balance < transfer.amount:
+        raise HTTPException(status_code=400, detail="Insufficient balance in source account")
+
+    # 2. Generate a unique transfer_id
+    transfer_id = int(time.time() * 1000) + random.randint(1, 1000)
+
+    # 3. Atomic transaction
+    try:
+        # Deduct from source
+        source.balance -= transfer.amount
+        # Add to destination
+        dest.balance += transfer.amount
+
+        # Create expense transaction (source)
+        txn_out = models.Transaction(
+            user_id=current_user.id,
+            account_id=source.id,
+            category_id=None,  # No category for transfer; you can set a default "Transfer" category if you create one
+            amount=transfer.amount,
+            type=schemas.TransactionType.EXPENSE,
+            description=f"Transfer to {dest.name}: {transfer.description}" if transfer.description else f"Transfer to {dest.name}",
+            date=transfer.date,
+            transfer_id=transfer_id,
+        )
+        db.add(txn_out)
+
+        # Create income transaction (destination)
+        txn_in = models.Transaction(
+            user_id=current_user.id,
+            account_id=dest.id,
+            category_id=None,
+            amount=transfer.amount,
+            type=schemas.TransactionType.INCOME,
+            description=f"Transfer from {source.name}: {transfer.description}" if transfer.description else f"Transfer from {source.name}",
+            date=transfer.date,
+            transfer_id=transfer_id,
+        )
+        db.add(txn_in)
+
+        db.commit()
+        db.refresh(txn_out)
+        db.refresh(txn_in)
+
+        return [txn_out, txn_in]
+
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Transfer failed: {str(e)}")

@@ -7,7 +7,8 @@ import {
   FaWallet, 
   FaChartPie, 
   FaSignOutAlt,
-  FaUserCircle 
+  FaUserCircle,
+  FaExchangeAlt   // New icon for transfer
 } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
@@ -24,7 +25,7 @@ const Sidebar = () => {
         boxShadow: '2px 0 10px rgba(0,0,0,0.2)',
       }}
     >
-      {/* ব্র্যান্ড / লোগো */}
+      {/* Brand / Logo */}
       <div className="text-center py-4 border-bottom border-light border-opacity-10">
         <h4 className="fw-bold mb-0">
           <span className="text-primary">💰</span> Pocket Hisaab
@@ -32,7 +33,7 @@ const Sidebar = () => {
         <small className="text-white-50">Expense Tracker</small>
       </div>
 
-      {/* ইউজার প্রোফাইল (ছোট) */}
+      {/* User profile */}
       <div className="d-flex align-items-center px-3 py-3 border-bottom border-light border-opacity-10">
         <FaUserCircle size={36} className="text-primary me-2" />
         <div className="flex-grow-1">
@@ -45,7 +46,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* নেভিগেশন মেনু */}
+      {/* Navigation Menu */}
       <Nav className="flex-column flex-grow-1 px-2 py-3">
         <Nav.Link 
           as={NavLink} 
@@ -61,6 +62,13 @@ const Sidebar = () => {
           className="sidebar-link"
         >
           <FaMoneyBillWave className="me-2" /> Transactions
+        </Nav.Link>
+        <Nav.Link 
+          as={NavLink} 
+          to="/transfer"          // 🆕 Transfer link added
+          className="sidebar-link"
+        >
+          <FaExchangeAlt className="me-2" /> Transfer
         </Nav.Link>
         <Nav.Link 
           as={NavLink} 
@@ -85,7 +93,7 @@ const Sidebar = () => {
         </Nav.Link>
       </Nav>
 
-      {/* লগআউট বাটন */}
+      {/* Logout Button */}
       <div className="p-3 border-top border-light border-opacity-10">
         <Nav.Link 
           onClick={logout} 
@@ -96,7 +104,7 @@ const Sidebar = () => {
         </Nav.Link>
       </div>
 
-      {/* কাস্টম স্টাইল (শুধু এই কম্পোনেন্টের জন্য) */}
+      {/* Custom Styles */}
       <style jsx>{`
         .sidebar-link {
           color: rgba(255,255,255,0.7) !important;
